@@ -37,6 +37,12 @@ public class TestLista {
         System.out.println("Insertar POS 2");
         lista.insertarDerecha("-DDD-", 2);
         lista.mostrar();
-    }
     
+        System.out.println("\n");
+        ListaSimpleEnlazada2<Integer> prueba = new ListaSimpleEnlazada2<>();
+        prueba.agregarAlFinal(1);
+        prueba.agregarAlFinal(2);
+        prueba.agregarAlFinal(3);
+        prueba.mostrar();
+    }
 }
