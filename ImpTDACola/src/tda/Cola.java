@@ -1,4 +1,5 @@
-package src.tda;
+
+package tda;
 
 import javax.management.RuntimeErrorException;
 
