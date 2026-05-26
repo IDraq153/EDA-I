@@ -1,7 +1,7 @@
 package ejercicios;
 import tda.ListaSimpleEnlazada;
 
-public class ejercicio2 {
+public class Ejercicio2 {
 /**
 *2. Considere la operación sonIguales (L1, L2) que determina si dos listas 
 *   enlazadas simples son iguales (en tamaño y contenido).    
@@ -19,9 +19,9 @@ public class ejercicio2 {
         }
     }
     public static void main(String[] args) {
-        ListaSimpleEnlazada<Integer> l1 = new ListaSimpleEnlazada();
-        ListaSimpleEnlazada<Integer> l2 = new ListaSimpleEnlazada();
-        ListaSimpleEnlazada<Integer> l3 = new ListaSimpleEnlazada();
+        ListaSimpleEnlazada<Integer> l1 = new ListaSimpleEnlazada<>();
+        ListaSimpleEnlazada<Integer> l2 = new ListaSimpleEnlazada<>();
+        ListaSimpleEnlazada<Integer> l3 = new ListaSimpleEnlazada<>();
         
         l1.agregarAlFinal(2);
         l1.agregarAlFinal(5);
