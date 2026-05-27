@@ -35,6 +35,19 @@ public class ListaSimpleEnlazada<T> {
         }
     }
     /*
+    *agregarAlInicio: agrega un item al inicio de la lista
+    */
+    public void agregarAlInicio(T item){
+        Nodo<T> nuevNodo = new Nodo<>(item,null);
+        if (estaVacia()) cabeza = nuevNodo;
+
+        // 1, 2, 3 
+        else {
+            nuevNodo.setSgteNodo(cabeza);
+            cabeza = nuevNodo;
+        }
+    }
+    /*
     * Mostrar: imprime en pantalla todos los elementos de la lista
     */
     public void mostrar(){
@@ -183,4 +196,39 @@ public class ListaSimpleEnlazada<T> {
     public boolean sonIguales(ListaSimpleEnlazada l1, ListaSimpleEnlazada l2) {
         return l1.sonIguales(l2);
     }
-}
+    //invertirLista: invierte la lista de elementos
+    public void invertir() {
+        Nodo<T> anterior = null;
+        Nodo<T> actual = cabeza;
+        Nodo<T> siguiente;
+        
+        while (actual != null) {
+            siguiente = actual.getSgteNodo();
+            actual.setSgteNodo(anterior);
+            
+            anterior = actual;
+            actual = siguiente;
+        }
+        cabeza = anterior;
+    }
+    //eliminarRepetidos: elimina items repetidos
+    public void eliminarDuplicados() {
+        Nodo<T> sel = cabeza;
+        while (sel!=null) {
+            Nodo<T> aux = sel.getSgteNodo();
+            Nodo<T> ant = sel;
+            
+            while (aux!=null) {
+                if (aux.getItem().equals(sel.getItem())) {
+                    ant.setSgteNodo(aux.getSgteNodo());
+                    aux = ant.getSgteNodo();
+                } else {
+                    ant = aux;
+                    aux = aux.getSgteNodo();
+                }
+            }
+
+            sel = sel.getSgteNodo();
+        }
+    }
+} 

@@ -7,42 +7,47 @@ public class TestLista {
         System.out.println(lista.estaVacia());
         lista.agregarAlFinal("Juan");
         lista.agregarAlFinal("Ana");
-        lista.agregarAlFinal("Juan");
-        lista.agregarAlFinal("Roger");
+        lista.agregarAlFinal("mario");
+        lista.agregarAlFinal("Dario");
         lista.agregarAlFinal("Sonia");
         lista.agregarAlFinal("Hernan");
+        lista.agregarAlInicio("Dario");
+        System.out.println("--");
+        lista.mostrar();
+        lista.eliminarDuplicados();        
+        lista.mostrar();
+        // System.out.println("------------ELEMENTOS-------------");
+        // System.out.println("Mostrar los elementos de la lista: ");
+        // lista.mostrar();
+        // System.out.println("Longitud: "+lista.longitud());
         
-        System.out.println("------------ELEMENTOS-------------");
-        System.out.println("Mostrar los elementos de la lista: ");
-        lista.mostrar();
-        System.out.println("Longitud: "+lista.longitud());
+        // System.out.println("------------UBICACION-------------");
+        // System.out.println("Iesimo 4: "+lista.iesimo(2));
+        // System.out.println("Ubicacion: "+"Hernan: "+lista.ubicacion("Hernan"));
         
-        System.out.println("------------UBICACION-------------");
-        System.out.println("Iesimo 4: "+lista.iesimo(2));
-        System.out.println("Ubicacion: "+"Hernan: "+lista.ubicacion("Hernan"));
+        // System.out.println("------------ELIMINAR_POS-------------");
+        // lista.eliminar(1);
+        // lista.mostrar();
         
-        System.out.println("------------ELIMINAR_POS-------------");
-        lista.eliminar(1);
-        lista.mostrar();
-        
-        System.out.println("------------INSERTAR-------------");
-        lista.insertar("Mario", 1);
-        System.out.println("Insertar POS 3");
-        lista.mostrar();
-        lista.insertar("-Leo-", 3);
-        System.out.println("");
-        lista.insertar("-Pedro-", 6);
-        lista.mostrar();
-        System.out.println("");
-        System.out.println("Insertar POS 2");
-        lista.insertarDerecha("-DDD-", 2);
-        lista.mostrar();
+        // System.out.println("------------INSERTAR-------------");
+        // lista.insertar("Mario", 1);
+        // System.out.println("Insertar POS 3");
+        // lista.mostrar();
+        // lista.insertar("-Leo-", 3);
+        // System.out.println("");
+        // lista.insertar("-Pedro-", 6);
+        // lista.mostrar();
+        // System.out.println("");
+        // System.out.println("Insertar POS 2");
+        // lista.insertarDerecha("-DDD-", 2);
+        // lista.mostrar();
     
-        System.out.println("\n");
-        ListaSimpleEnlazada2<Integer> prueba = new ListaSimpleEnlazada2<>();
-        prueba.agregarAlFinal(1);
-        prueba.agregarAlFinal(2);
-        prueba.agregarAlFinal(3);
-        prueba.mostrar();
+        // System.out.println("\n");
+        // ListaSimpleEnlazada2<Integer> prueba = new ListaSimpleEnlazada2<>();
+        // prueba.agregarAlFinal(1);
+        // prueba.agregarAlFinal(2);
+        // prueba.agregarAlFinal(3);
+        // prueba.mostrar();
+
     }
 }
