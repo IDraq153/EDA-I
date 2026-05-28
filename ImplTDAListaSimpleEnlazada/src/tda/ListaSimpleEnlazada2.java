@@ -52,8 +52,8 @@ public class ListaSimpleEnlazada2<T> {
         
         Nodo<T> aux2 = cabeza;
         while(aux2!=null){
-            System.out.println("Dir de nuevo nodo:" + aux2 + " contiene:" + aux2.getItem() );
-            System.out.println("Dir de lo que apunta:" + aux2.getSgteNodo());
+            // System.out.println("Dir de nuevo nodo:" + aux2 + " contiene:" + aux2.getItem() );
+            // System.out.println("Dir de lo que apunta:" + aux2.getSgteNodo());
 
 
             aux2 = aux2.getSgteNodo(); //
@@ -202,5 +202,43 @@ public class ListaSimpleEnlazada2<T> {
     }
     public boolean sonIguales(ListaSimpleEnlazada2 l1, ListaSimpleEnlazada2 l2) {
         return l1.sonIguales(l2);
+    }
+    
+    public double calcularPromedio(String x) {
+        if (estaVacia()) return 0.0;
+
+        Nodo<T> aux = cabeza;
+        double suma = 0;
+        int contador = 0;
+
+        while (aux!=null) {
+            Registro r = (Registro)aux.getItem(); // Casteo registro 
+            if (r.getCodEstudiante().equals(x)) {
+                suma += r.getNotaF();
+                contador++;
+            }
+            aux = aux.getSgteNodo(); 
+        }
+        if (contador < 0) return 0.0; 
+
+        double promedio = suma / contador;
+        return promedio;
+    }
+
+    public void insertarNotaEs(String codEs, String codCur, double nota) {
+        if (estaVacia()) agregarAlFinal((T) new Registro(codEs, codCur, nota));
+
+        Nodo<T> aux = cabeza;
+        while (aux!=null) {
+            Registro r = (Registro) aux.getItem();
+
+            // Caso alumno ya tiene nota en ese curso
+            if (r.getCodEstudiante().equals(codEs) && r.getCodCurso().equals(codCur)) return;
+            
+            aux = aux.getSgteNodo();
+        }
+
+        agregarAlFinal((T) new Registro(codEs, codCur, nota));
+        System.out.println("Ingresado con exito" + codEs + ", cod curso: " + codCur);
     }
 }
