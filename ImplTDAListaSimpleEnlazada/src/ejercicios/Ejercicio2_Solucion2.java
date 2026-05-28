@@ -13,7 +13,5 @@ public class Ejercicio2_Solucion2 {
         System.out.println("Son iguales: "+L1.sonIguales(L2));
         System.out.println("Son iguales: "+L3.sonIguales(L1,L2));
         
-       
-        
     }
 }

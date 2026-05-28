@@ -7,8 +7,22 @@ public class ejercicio3 {
 *  las listas enlazadas L1 y L2 en una sola lista de tal forma que el último 
 *  nodo de la primera lista (L1) apunte al primer nodo de la segunda lista (L2).    
 */
-    public static ListaSimpleEnlazada concateLista(ListaSimpleEnlazada l1, ListaSimpleEnlazada l2) {
+    public static void main(String[] args) {
+        ListaSimpleEnlazada<Integer> lista = new ListaSimpleEnlazada<>();
+        ListaSimpleEnlazada<Integer> lista2 = new ListaSimpleEnlazada<>();
+        lista.agregarAlFinal(1);
+        lista.agregarAlFinal(3);
+        lista.agregarAlFinal(1);
         
-        return null;
+        lista2.agregarAlFinal(1);
+        lista2.agregarAlFinal(2);
+        lista2.agregarAlFinal(3);
+        System.out.println("");
+        lista.mostrar();
+        System.out.println("");
+        lista2.mostrar();
+
+        lista.concatenarLista(lista2);
+        lista.mostrar();
     }
 }

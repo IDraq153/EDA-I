@@ -231,4 +231,12 @@ public class ListaSimpleEnlazada<T> {
             sel = sel.getSgteNodo();
         }
     }
+    //concatena<rLista: une dos listas brindadas
+    public void concatenarLista(ListaSimpleEnlazada lista) {
+        // 1, 2, 3     4, 5, 6
+        Nodo<T> aux = cabeza;
+        while (aux.getSgteNodo()!=null) aux = aux.getSgteNodo();
+
+        aux.setSgteNodo(lista.cabeza);
+    }
 } 
