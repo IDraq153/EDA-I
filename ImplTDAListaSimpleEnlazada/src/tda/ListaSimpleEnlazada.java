@@ -196,21 +196,6 @@ public class ListaSimpleEnlazada<T> {
     public boolean sonIguales(ListaSimpleEnlazada l1, ListaSimpleEnlazada l2) {
         return l1.sonIguales(l2);
     }
-    //invertirLista: invierte la lista de elementos
-    public void invertir() {
-        Nodo<T> anterior = null;
-        Nodo<T> actual = cabeza;
-        Nodo<T> siguiente;
-        
-        while (actual != null) {
-            siguiente = actual.getSgteNodo();
-            actual.setSgteNodo(anterior);
-            
-            anterior = actual;
-            actual = siguiente;
-        }
-        cabeza = anterior;
-    }
     //eliminarRepetidos: elimina items repetidos
     public void eliminarDuplicados() {
         Nodo<T> sel = cabeza;
@@ -238,5 +223,86 @@ public class ListaSimpleEnlazada<T> {
         while (aux.getSgteNodo()!=null) aux = aux.getSgteNodo();
 
         aux.setSgteNodo(lista.cabeza);
+    }
+    //invertirLista: invierte la lista
+    public void invertir() {
+        // 1, 2, 3, 4  -->  4, 3, 2, 1
+        Nodo<T> ant = null;
+        Nodo<T> actual = cabeza;
+        Nodo<T> sgt;
+
+        while (actual!=null) {
+            sgt = actual.getSgteNodo();
+            actual.setSgteNodo(ant);
+
+            ant = actual;
+            actual = sgt;   
+        }
+        cabeza = ant;
+    }
+    //mezclarListas: mezcla las listas
+    public void mezclarListas(
+            ListaSimpleEnlazada<Integer> lista,
+            ListaSimpleEnlazada<Integer> lista2) {
+
+        Nodo<Integer> aux = lista.cabeza;
+        Nodo<Integer> aux2 = lista2.cabeza;
+
+        while (aux != null && aux2 != null) {
+
+            if (aux.getItem() <= aux2.getItem()) {
+                this.agregarAlFinal((T) aux.getItem());
+                aux = aux.getSgteNodo();      // avanzar
+            } else {
+                this.agregarAlFinal((T) aux2.getItem());
+                aux2 = aux2.getSgteNodo();    // avanzar
+            }
+        }
+
+        // Agregar lo que quede de la primera lista
+        while (aux != null) {
+            this.agregarAlFinal((T) aux.getItem());
+            aux = aux.getSgteNodo();
+        }
+
+        // Agregar lo que quede de la segunda lista
+        while (aux2 != null) {
+            this.agregarAlFinal((T) aux2.getItem());
+            aux2 = aux2.getSgteNodo();
+        }
+    }
+    //ordenadaAsc: verifica si esta ordenada
+    public boolean ordenadaAsc(ListaSimpleEnlazada<Integer> lista) {
+        boolean flag = true;
+        Nodo<Integer> aux = lista.cabeza;
+        Nodo<Integer> aux2 = lista.cabeza.getSgteNodo();
+        
+        while (aux2!=null) {
+            if (aux.getItem()>aux2.getItem()) {
+                flag = false;
+                return flag;
+            }
+            aux = aux.getSgteNodo();
+            aux2 = aux2.getSgteNodo();
+        }
+        
+        return flag;
+    }
+    //ultimoNodo: ubica el ultimo nodo al comienzo
+    public void ultimoNodo() {
+        if (cabeza == null || cabeza.getSgteNodo() == null) return;
+        
+        Nodo<T> aux2 = cabeza;
+        Nodo<T> temp = aux2;
+        
+        // 1, 2, 3, 4
+        while (aux2.getSgteNodo()!=null) {
+            temp = aux2;
+            aux2 = aux2.getSgteNodo();
+        }
+        
+        temp.setSgteNodo(null);
+        aux2.setSgteNodo(cabeza);
+        cabeza = aux2;
     }
 } 
