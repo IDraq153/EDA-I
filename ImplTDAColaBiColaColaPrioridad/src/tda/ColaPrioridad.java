@@ -2,6 +2,7 @@ package tda;
 
 public class ColaPrioridad<T> {
     private NodoPrioridad<T> frente; // apunta al primer nodo
+    @SuppressWarnings("unused")
     private NodoPrioridad<T> ultimo;
     // Operacion para crear una cola
     public ColaPrioridad(){
@@ -12,6 +13,7 @@ public class ColaPrioridad<T> {
         return frente == null;
     }
     // Encolar: agrega un item al final de la cola
+    // es por prioirdad asi que nuevo nodo con mayor prioridad entrara por los primeros
     public void encolar(T item, int prioridad){
         NodoPrioridad<T> nuevoNodo = new NodoPrioridad(item,prioridad,null);
         if (estaVacia()){
@@ -21,6 +23,7 @@ public class ColaPrioridad<T> {
             nuevoNodo.setSgteNodo(frente);
             frente = nuevoNodo;
         }else{
+            // [2,5] [3,6] [4,9] ___10
             NodoPrioridad<T> aux = frente;
             NodoPrioridad<T> ant = frente;
             while( aux!=null && aux.getPrioridad()>=prioridad){
