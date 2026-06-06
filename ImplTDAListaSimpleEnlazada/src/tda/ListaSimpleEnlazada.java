@@ -344,4 +344,57 @@ public class ListaSimpleEnlazada<T> {
         aux.setItem(elem2);
         aux2.setItem(elem1);
     }
+    public int ultimoNodoMayorLongitud() {
+        int flag = 0;
+        Nodo<T> aux = cabeza;
+        
+        while (aux.getSgteNodo()!=null) {
+            aux = aux.getSgteNodo();
+        }
+        int item = (int) aux.getItem();
+
+        if (item == longitud()) {
+            return flag;
+        } else if (item > longitud()) {
+            flag = 1;
+            return flag;
+        } else {
+            flag = -1;
+            return flag;
+        }        
+    }
+    public void recorrerListas(ListaSimpleEnlazada<Integer> l1, ListaSimpleEnlazada<Integer> l2) {
+        Nodo<Integer> aux = l1.cabeza;
+        Nodo<Integer> aux2 = l2.cabeza;
+        Integer elem1 = 0;
+        Integer pos = 1;
+
+        if (l1.estaVacia() || l2.estaVacia()) {
+            throw new RuntimeException("Las listas están vacías");
+        }
+
+        while (aux2!=null) {
+            pos = aux2.getItem();
+            aux2 = aux2.getSgteNodo();
+            
+            if (pos > l1.longitud()) 
+                System.out.println("No existe Nodo " + pos);
+            else {
+                int i = 1;
+                while (aux!=null) {
+                    elem1 = aux.getItem();
+                    if (i == pos) {
+                        System.out.println("Elemento " + elem1);
+                        break;
+                    } else {
+                        aux = aux.getSgteNodo();
+                        i++;
+                    }
+                }
+                aux = l1.cabeza;
+            }
+        }
+    }
+
+
 } 
