@@ -241,4 +241,78 @@ public class ListaSimpleEnlazada2<T> {
         agregarAlFinal((T) new Registro(codEs, codCur, nota));
         System.out.println("Ingresado con exito" + codEs + ", cod curso: " + codCur);
     }
+
+    public void insertarArticulo(int code, int cant, float precioU) {
+        Nodo<T> nuevo = (Nodo<T>) new Nodo<>(
+                new Articulo(code, cant, precioU), null);
+
+        if (estaVacia()) {
+            cabeza = nuevo;
+            return;
+        }
+
+        Articulo a = (Articulo) cabeza.getItem();
+        if (a.getCode() == code) return;
+
+        if (code < a.getCode()) {
+            nuevo.setSgteNodo(cabeza);
+            cabeza = nuevo;
+            return;
+        }
+
+        Nodo<T> aux = cabeza;
+        while (aux.getSgteNodo() != null) {
+
+            Articulo sig = (Articulo) aux.getSgteNodo().getItem();
+            if (sig.getCode() == code) return;
+            if (code < sig.getCode()) break;
+            aux = aux.getSgteNodo();
+        }
+
+        nuevo.setSgteNodo(aux.getSgteNodo());
+        aux.setSgteNodo(nuevo);
+    }
+
+    public Articulo mayorVenta() {
+        Nodo<Articulo> aux = (Nodo<Articulo>) cabeza;
+        Articulo mayor = aux.getItem(); // el primero
+        Articulo a;
+
+        while (aux.getSgteNodo()!=null) {
+            a = (Articulo) aux.getSgteNodo().getItem();
+
+            if (mayor.getCant() < a.getCant()) {
+                mayor = a;
+            }
+            aux = aux.getSgteNodo();
+        }
+
+        return mayor;
+    } 
+
+    public void eliminarMenorVenta() {
+
+        if (estaVacia()) return;
+
+        Nodo<Articulo> menor = (Nodo<Articulo>) cabeza;
+        Nodo<Articulo> antMenor = null;
+        Nodo<Articulo> ant = null;
+        Nodo<Articulo> aux = (Nodo<Articulo>) cabeza;
+
+        while (aux != null) {
+
+            if (aux.getItem().getCant() < menor.getItem().getCant()) {
+                menor = aux;
+                antMenor = ant;
+            }
+
+            ant = aux;
+            aux = aux.getSgteNodo();
+        }
+
+        if (antMenor == null)
+            cabeza = cabeza.getSgteNodo();
+        else
+            antMenor.setSgteNodo(menor.getSgteNodo());
+    }
 }
