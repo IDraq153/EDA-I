@@ -1,5 +1,7 @@
 package tda;
 
+import javax.management.RuntimeErrorException;
+
 public class ListaSimpleEnlazada<T> {
     // Atributos
     private Nodo<T> cabeza;
@@ -118,9 +120,26 @@ public class ListaSimpleEnlazada<T> {
                 i++;
                 aux = aux.getSgteNodo();
             }
-            Nodo<T> aux2 = aux;
+            Nodo<T> aux2 = aux.getSgteNodo();
             aux.setSgteNodo(aux2.getSgteNodo());
         }
+    }
+    public void eliminarPenultimo() {
+        Nodo<T> aux = cabeza;
+        Nodo<T> aux2;
+        int i = 1, pos = longitud();
+
+        if (estaVacia()) 
+            throw new RuntimeErrorException(null, "Esta vacia");
+        if (pos <= 2) 
+            this.eliminar(1);
+
+        while (i < pos -2) {
+            aux = aux.getSgteNodo();
+            i++;
+        }
+        aux2 = aux.getSgteNodo();
+        aux.setSgteNodo(aux2.getSgteNodo());
     }
     /*
     * insertar: agrega un nuevo elemento en una posicion especifica
@@ -304,5 +323,25 @@ public class ListaSimpleEnlazada<T> {
         temp.setSgteNodo(null);
         aux2.setSgteNodo(cabeza);
         cabeza = aux2;
+    }
+    public void intercambioElementos(int pos) {
+        Nodo<T> aux = cabeza;
+        Nodo<T> aux2 = cabeza.getSgteNodo();
+        int i = 1;
+
+        if  (pos == longitud()) 
+            throw new RuntimeErrorException(null, "Error, ultimo elemento");
+        
+
+        while (i < pos) {
+            aux = aux.getSgteNodo();
+            aux2 = aux2.getSgteNodo();
+            i++;
+        }
+
+        T elem1 = aux.getItem();
+        T elem2 = aux2.getItem();
+        aux.setItem(elem2);
+        aux2.setItem(elem1);
     }
 } 
