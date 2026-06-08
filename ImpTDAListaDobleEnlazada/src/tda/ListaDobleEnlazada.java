@@ -68,27 +68,27 @@ public class ListaDobleEnlazada<T> {
     }
     //insertarAlInicio: Inserta en una lista un elemento al inicio
     public void insertarAlInicio(T item) {
-        NodoDoble<T> nuevoNodo = new NodoDoble<>(item, cabeza, null);
-        cantidad++;
-        if (estaVacia()) insertarListaVacia(item);
-        else {
-            cabeza.setAntNodo(nuevoNodo);   
-            cabeza = nuevoNodo;
+        if (estaVacia()) {
+            insertarListaVacia(item);
+            return;
         }
+        NodoDoble<T> nuevoNodo = new NodoDoble<>(item, cabeza, null);
+        cabeza.setAntNodo(nuevoNodo);   
+        cabeza = nuevoNodo;
+        cantidad++;
     }
     //insertarAlFinal: Inserta en una lista un elemento al final
     public void insertarAlFinal(T item) {
         NodoDoble<T> nuevoNodo = new NodoDoble<>(item, null, ultimo);
-        cantidad++;
         if (estaVacia()) insertarListaVacia(item);
         else {
             ultimo.setSgtNodo(nuevoNodo);
             ultimo = nuevoNodo;
+            cantidad++;
         }
     }
     //intertarMedio: Inserta en una poscion media
     public void insertar(T item, int posicion) {
-        cantidad++;
         if (estaVacia() || posicion <= 0) insertarAlInicio(item);
         else {
             //Posicionar puntero en la posicion anterior indicada
@@ -103,11 +103,108 @@ public class ListaDobleEnlazada<T> {
                 insertarAlFinal(item);
                 return;
             }
-
+            
             //1,2,3,___,4,5,6,7
             NodoDoble<T> nuevoNodo = new NodoDoble<>(item, aux.getSgtNodo(), aux);
             aux.getSgtNodo().setAntNodo(nuevoNodo);
             aux.setSgtNodo(nuevoNodo);
+            
+            cantidad++;
+        }
+    }
+    
+    public T ultimo() {
+        T item = ultimo.getItem();
+        return item;
+    }
+
+    public void eliminarAlInicio() {
+        if (estaVacia()) 
+            throw new RuntimeException("Error, La lista esta vacia!");
+        if (longitud()==1) {
+            cabeza = null;
+            ultimo = null;
+            cantidad--;
+            return;
+        }
+        
+        NodoDoble<T> aux = cabeza.getSgtNodo();
+        cabeza = aux;
+        cabeza.setAntNodo(null);
+        cantidad--;
+    }
+    
+    public void eliminarAlFinal() {
+        if (estaVacia()) 
+            throw new RuntimeException("Error, La lista esta vacia!");
+        if (longitud()==1) {
+            eliminarAlInicio();
+            return;
+        }
+        
+        NodoDoble<T> aux = ultimo.getAntNodo();
+        aux.setSgtNodo(null);
+        ultimo = aux;
+        cantidad--;
+    }
+    
+    public void eliminar(T dato) {
+        if (estaVacia()) 
+            throw new RuntimeException("Error, La lista esta vacia!");
+        if (cabeza.getItem().equals(dato)) {
+            eliminarAlInicio();
+            return;
+        }
+        if (ultimo.getItem().equals(dato)) {
+            eliminarAlFinal();
+            return;
+        }
+        
+        NodoDoble<T> aux = cabeza;
+        NodoDoble<T> aux2;
+        boolean encontrado = false;
+
+        while (aux!=null && !encontrado) {
+            T item = aux.getItem();
+            if (item.equals(dato)) {
+                encontrado = true;
+                break;
+            }
+            aux = aux.getSgtNodo();
+        }
+        if (encontrado) {
+            aux2 = aux.getSgtNodo();
+            aux = aux.getAntNodo();
+            aux.setSgtNodo(aux2);
+            aux2.setAntNodo(aux);
+            cantidad--;
+        } else {
+            System.err.println("Elemento no encontrado");
+        }
+    }
+
+    public void intercambioInicioFin() {
+        T itemC = cabeza.getItem();
+        T itemU = ultimo.getItem();
+
+        cabeza.setItem(itemU);
+        ultimo.setItem(itemC);
+    }
+
+    public void invertir() {
+        if (estaVacia()) 
+            throw new RuntimeException("Error, La lista esta vacia!");
+
+        NodoDoble<T> actual = cabeza;
+        NodoDoble<T> temp = null;
+
+        while (actual != null) {
+            temp = actual.getAntNodo();
+
+            actual.setAntNodo(actual.getSgtNodo());
+            actual.setSgtNodo(temp);
+
+            actual = actual.getAntNodo();
         }
     }
 }
