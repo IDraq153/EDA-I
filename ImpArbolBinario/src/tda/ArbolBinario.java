@@ -27,13 +27,13 @@ public class ArbolBinario<T extends Comparable<?>> {
         return nodo.getHijoDer();
     }
     // Crear la Raiz del arbol binario
-    public Nodo<T> crearRaiz(T item) {
+    public Nodo<T> creaRaiz(T item) {
         if (!estaVacio()) 
             throw new RuntimeException("Error, el arbol tiene una raiz");
         Nodo<T> nuevoNodo = new Nodo<>(item, null, null, null);
         raiz = nuevoNodo;
         t++;
-        return raiz;
+        return raiz; 
     }
     //agregar un hijo izq a un nodo especifico
     public Nodo<T> agregarHijoIzq(Nodo<T> padre, T item) {
