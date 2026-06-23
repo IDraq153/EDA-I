@@ -35,7 +35,7 @@ public class ArbolBinario<T extends Comparable<?>> {
         t++;
         return raiz; 
     }
-    //agregar un hijo izq a un nodo especifico
+    // agregar un hijo izq a un nodo especifico
     public Nodo<T> agregarHijoIzq(Nodo<T> padre, T item) {
         if (padre == null) 
             throw new RuntimeException("Nodo nulo");
@@ -47,7 +47,7 @@ public class ArbolBinario<T extends Comparable<?>> {
         t++;
         return padre.getHijoIzq();
     }
-    //agregar un hijo der a un nodo especifico
+    // agregar un hijo der a un nodo especifico
     public Nodo<T> agregarHijoDer(Nodo<T> padre, T item) {
         if (padre == null) 
             throw new RuntimeException("Nodo nulo");
@@ -58,5 +58,9 @@ public class ArbolBinario<T extends Comparable<?>> {
         padre.setHijoDer(nuevoNodo);
         t++;
         return padre.getHijoDer();
+    }
+    // obtener tamaño
+    public int tamanio() {
+        return t;
     }
 }
