@@ -1,7 +1,8 @@
 
-package tda;
+package tdaBi;
 
 import javax.management.RuntimeErrorException;
+
 
 public class BiCola<T> {
     private Nodo<T> frente;

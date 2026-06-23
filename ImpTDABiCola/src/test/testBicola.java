@@ -1,5 +1,5 @@
 package test;
-import tda.BiCola;
+import tdaBi.BiCola;
 
 public class testBicola {
     public static void main(String[] args) {

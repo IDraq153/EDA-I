@@ -1,5 +1,5 @@
 
-package tda;
+package tdaBi;
 
 public class Nodo<T> {
     // Atributos
