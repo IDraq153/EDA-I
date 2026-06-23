@@ -63,4 +63,30 @@ public class ArbolBinario<T extends Comparable<?>> {
     public int tamanio() {
         return t;
     }
+    // recorrido en pre-orden de raiz luego a izquierda luego derecha
+    public void preOrden(Nodo<T> nodoRaiz) {
+        if (nodoRaiz != null) {
+            System.out.println(nodoRaiz.getItem()+"\t");
+            // Recorrido en preorden del sub arbol izquierdo
+            preOrden(nodoRaiz.getHijoIzq());
+            // Recorrido en preorden del sub arbol derecho
+            preOrden(nodoRaiz.getHijoDer());
+        }
+    } 
+    // in-orden va de izquierda a raiz luego derecha
+    public void inOrden(Nodo<T> nodo) {
+        if (nodo != null) {
+            inOrden(nodo.getHijoIzq());
+            System.out.println(nodo.getItem() + " ");
+            inOrden(nodo.getHijoDer());
+        }
+    }
+    // pos-orden va de izquierda a derecha finalmente la raiz
+    public void posOrden(Nodo<T> nodo) {
+        if (nodo != null) {
+            posOrden(nodo.getHijoIzq());
+            posOrden(nodo.getHijoDer());
+            System.out.println(nodo.getItem() + " ");
+        }
+    }
 }

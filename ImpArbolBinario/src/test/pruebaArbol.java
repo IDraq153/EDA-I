@@ -12,5 +12,8 @@ public class pruebaArbol {
         @SuppressWarnings("unused")
         Nodo<Integer> f = ab.agregarHijoDer(e, 8);
         System.out.println(ab.tamanio());
+
+        System.out.println("\nRecorrido pre orden");
+        ab.preOrden(r);
     }
 }
