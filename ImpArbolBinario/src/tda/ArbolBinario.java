@@ -66,7 +66,7 @@ public class ArbolBinario<T extends Comparable<?>> {
     // recorrido en pre-orden de raiz luego a izquierda luego derecha
     public void preOrden(Nodo<T> nodoRaiz) {
         if (nodoRaiz != null) {
-            System.out.println(nodoRaiz.getItem()+"\t");
+            System.out.print(nodoRaiz.getItem()+"    ");
             // Recorrido en preorden del sub arbol izquierdo
             preOrden(nodoRaiz.getHijoIzq());
             // Recorrido en preorden del sub arbol derecho
@@ -77,7 +77,7 @@ public class ArbolBinario<T extends Comparable<?>> {
     public void inOrden(Nodo<T> nodo) {
         if (nodo != null) {
             inOrden(nodo.getHijoIzq());
-            System.out.println(nodo.getItem() + " ");
+            System.out.print(nodo.getItem() + "    ");
             inOrden(nodo.getHijoDer());
         }
     }
@@ -86,7 +86,7 @@ public class ArbolBinario<T extends Comparable<?>> {
         if (nodo != null) {
             posOrden(nodo.getHijoIzq());
             posOrden(nodo.getHijoDer());
-            System.out.println(nodo.getItem() + " ");
+            System.out.print(nodo.getItem() + "    ");
         }
     }
 }

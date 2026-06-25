@@ -5,22 +5,26 @@ import tda.Nodo;
 public class pruebaArbol2 {
     public static void main(String[] args) {
         ArbolBinario<Character> ab = new ArbolBinario<>();
-        Nodo<Character> r = ab.creaRaiz('A');
-        Nodo<Character> a = ab.agregarHijoIzq(r, 'B');
+        Nodo<Character> A = ab.creaRaiz('A');
+        Nodo<Character> B = ab.agregarHijoIzq(A, 'B');
         @SuppressWarnings("unused")
-        Nodo<Character> c = ab.agregarHijoIzq(a, 'D');
+        Nodo<Character> D = ab.agregarHijoIzq(B, 'D');
         
-        Nodo<Character> h = ab.agregarHijoDer(r, 'C');
+        Nodo<Character> C = ab.agregarHijoDer(A, 'C');
         @SuppressWarnings("unused")
-        Nodo<Character> j = ab.agregarHijoDer(h, 'F');
-        Nodo<Character> k = ab.agregarHijoIzq(h, 'E');
+        Nodo<Character> F = ab.agregarHijoDer(C, 'F');
+        Nodo<Character> E = ab.agregarHijoIzq(C, 'E');
         @SuppressWarnings("unused")
-        Nodo<Character> l = ab.agregarHijoIzq(k, 'G');
+        Nodo<Character> G = ab.agregarHijoIzq(E, 'G');
         @SuppressWarnings("unused")
-        Nodo<Character> m = ab.agregarHijoDer(k, 'H');
+        Nodo<Character> H = ab.agregarHijoDer(E, 'H');
 
         System.out.println(ab.tamanio()+'\n');
         System.out.println("RECORRIDO PRE-ORDEN");
-        ab.preOrden(r);
+        ab.preOrden(A);
+        System.out.println("\nRECORRIDO IN-ORDEN");
+        ab.inOrden(A);
+        System.out.println("\nRECORRIDO POS-ORDEN");
+        ab.posOrden(A);
     }
 }
