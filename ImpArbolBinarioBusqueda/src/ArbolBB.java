@@ -1,4 +1,5 @@
 
+@SuppressWarnings("rawtypes")
 public class ArbolBB<T extends Comparable> {
     // elementos
     private T raiz;
@@ -38,6 +39,7 @@ public class ArbolBB<T extends Comparable> {
     si es mayor a 0 item es mayor, si es igual es
     igual a raiz, si es menor es menor a raiz compareTo
     */ 
+    @SuppressWarnings("unchecked")
     public void agregar(T item) {
         if (estaVacio()) raiz = item;
         else if (item.compareTo(raiz) < 0) {
