@@ -66,4 +66,20 @@ public class ArbolBB<T extends Comparable> {
         System.out.println(raiz + "\t");
         if (subArbolDer!=null) subArbolDer.inorden();        
     }
+
+    public T min() {
+        if (estaVacio()) throw new RuntimeException("Errors arbol vacios");    
+        else {
+            if (subArbolIzq == null) return raiz;
+            else return subArbolIzq.min();
+        }
+    }
+    
+    public T max() {
+        if (estaVacio()) throw new RuntimeException("Errors arbol vacios");    
+        else {
+            if (subArbolIzq == null) return raiz;
+            else return subArbolDer.max();
+        }
+    }
 }
