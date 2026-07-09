@@ -74,12 +74,56 @@ public class ArbolBB<T extends Comparable> {
             else return subArbolIzq.min();
         }
     }
-    
+
     public T max() {
-        if (estaVacio()) throw new RuntimeException("Errors arbol vacios");    
-        else {
-            if (subArbolIzq == null) return raiz;
+        if(estaVacio()) throw new RuntimeException("Error arbol vacio");
+        else{   
+            if(subArbolDer==null) return raiz;
             else return subArbolDer.max();
         }
+    }
+
+    public Pila<T> mayoresque(T x){
+        Pila<T> pila =new Pila<>();
+        obtenerMayoresque(x,pila);
+        return pila;    
+    }
+    private void obtenerMayoresque(T x, Pila<T> pila){
+        if(estaVacio()) return;       
+        if(subArbolIzq!=null) subArbolIzq.obtenerMayoresque(x, pila);
+        if(raiz.compareTo(x)>0) pila.apilar(raiz);
+        if(subArbolDer!=null) subArbolDer.obtenerMayoresque(x, pila);   
+    }
+
+    public void mostrarAntecesores(T item){
+        if(!estaVacio()){
+            int comparacion =raiz.compareTo(item);
+            //Si el resultado de comparacion es positivo la raiz es mayor que el item
+            if(comparacion>0){
+                
+                System.out.println(raiz+"");
+                if(subArbolIzq!=null) subArbolIzq.mostrarAntecesores(item);
+            //Si es negativo la raiz es menor
+            } else if(comparacion<0) {
+                System.out.println(raiz+"");
+                if(subArbolDer!=null) subArbolDer.mostrarAntecesores(item);
+            }   
+        }   
+    }
+
+    public boolean buscar(T item) {
+        boolean encontrado = false; 
+        if (item.compareTo(raiz) == 0) {
+            encontrado = true;
+        } else if (item.compareTo(raiz) < 0) {
+            if (subArbolIzq != null) {
+                encontrado = subArbolIzq.buscar(item);
+            }
+        } else if (item.compareTo(raiz) > 0) {
+            if (subArbolDer != null) {
+                encontrado = subArbolDer.buscar(item);
+            }
+        }
+        return encontrado;
     }
 }
