@@ -63,7 +63,7 @@ public class ArbolBB<T extends Comparable> {
         if (!estaVacio()) {
             if (subArbolIzq!=null) subArbolIzq.inorden();
         }
-        System.out.println(raiz + "\t");
+        System.out.print(raiz + "\t");
         if (subArbolDer!=null) subArbolDer.inorden();        
     }
 
@@ -125,5 +125,36 @@ public class ArbolBB<T extends Comparable> {
             }
         }
         return encontrado;
+    }
+
+    public void eliminar(T item) {
+        if (estaVacio()) throw new RuntimeException("Error arbol vacio");
+        
+        // arbol no vacio
+        if (item.compareTo(raiz) == 0) {
+            if (subArbolIzq == null && subArbolDer == null) {
+                raiz = null;
+            } else if (subArbolIzq != null && subArbolDer == null) {
+                raiz = subArbolIzq.getRaiz();
+                subArbolDer = subArbolIzq.getSubArbolDer();
+                subArbolIzq = subArbolIzq.getSubArbolIzq();
+            } else if (subArbolIzq == null && subArbolDer != null) {
+                raiz = subArbolDer.getRaiz();
+                subArbolIzq = subArbolDer.getSubArbolIzq();
+                subArbolDer = subArbolDer.getSubArbolDer();
+            } else if (subArbolIzq != null && subArbolDer != null) {
+                T itemMin = subArbolDer.min();
+                raiz = itemMin;
+                subArbolDer.eliminar(itemMin);
+            } 
+        } else if (item.compareTo(raiz) < 0) {
+            if (subArbolIzq != null) {
+                subArbolIzq.eliminar(item);
+            }
+        } else if (item.compareTo(raiz) > 0) {
+            if (subArbolDer != null) {
+                subArbolDer.eliminar(item);
+            }
+        } 
     }
 }

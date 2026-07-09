@@ -12,7 +12,7 @@ public class testArbol {
         abb.agregar(89);
         System.out.println("Recorrido");
         abb.inorden();
-        System.out.println("---------------------");
+        System.out.println("\n---------------------");
         System.out.println("Encontrar el maximo");
         
         Integer resultado2= abb.max();
@@ -35,5 +35,15 @@ public class testArbol {
         System.out.println("Sus antecesores son");
         //Ejercicio 6
         abb.mostrarAntecesores(3);
+
+        System.out.println("---------------------------");
+        System.out.println("Buscar 13: " + abb.buscar(13));
+        System.out.println("Buscar 50: " + abb.buscar(50));
+
+        System.out.println("---------------------------");
+        System.out.println("Eliminar");
+        abb.eliminar(13);
+        System.out.println("Mostrar Elemnto ya eliminado");
+        abb.inorden();
     }
 }
