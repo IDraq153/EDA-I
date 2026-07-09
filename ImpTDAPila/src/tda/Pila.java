@@ -13,7 +13,7 @@ public class Pila<T> {
 
     // apilar: agrega un item en la cima de la pila
     public void apilar(T item) {
-        Nodo<T> nuevoNodo = new Nodo(item, null);
+        Nodo<T> nuevoNodo = new Nodo<>(item, null);
         if (estaVacia()) {
             cima = nuevoNodo;
         } else {
