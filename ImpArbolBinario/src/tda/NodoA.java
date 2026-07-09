@@ -1,18 +1,18 @@
 package tda;
 
-public class Nodo<T> {
+public class NodoA<T> {
     private T item;
-    private Nodo<T> padre;
-    private Nodo<T> hijoIzq;
-    private Nodo<T> hijoDer;
+    private NodoA<T> padre;
+    private NodoA<T> hijoIzq;
+    private NodoA<T> hijoDer;
 
-    public Nodo(T item, Nodo<T> padre, Nodo<T> hijoIzq, Nodo<T> hijoDer) {
+    public NodoA(T item, NodoA<T> padre, NodoA<T> hijoIzq, NodoA<T> hijoDer) {
         this.item = item;
         this.padre = padre;
         this.hijoIzq = hijoIzq;
         this.hijoDer = hijoDer;
     }
-    public Nodo() {
+    public NodoA() {
         this.item = null;
         this.padre = null;
         this.hijoDer = null;
@@ -25,22 +25,22 @@ public class Nodo<T> {
     public void setItem(T item) {
         this.item = item;
     }
-    public Nodo<T> getPadre() {
+    public NodoA<T> getPadre() {
         return padre;
     }
-    public void setPadre(Nodo<T> padre) {
+    public void setPadre(NodoA<T> padre) {
         this.padre = padre;
     }
-    public Nodo<T> getHijoIzq() {
+    public NodoA<T> getHijoIzq() {
         return hijoIzq;
     }
-    public void setHijoIzq(Nodo<T> hijoIzq) {
+    public void setHijoIzq(NodoA<T> hijoIzq) {
         this.hijoIzq = hijoIzq;
     }
-    public Nodo<T> getHijoDer() {
+    public NodoA<T> getHijoDer() {
         return hijoDer;
     }
-    public void setHijoDer(Nodo<T> hijoDer) {
+    public void setHijoDer(NodoA<T> hijoDer) {
         this.hijoDer = hijoDer;
     }
 }

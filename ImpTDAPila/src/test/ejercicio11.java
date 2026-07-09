@@ -3,7 +3,7 @@ package test;
 import tda.Pila;
 
 public class ejercicio11 {
-    public static <T> Pila copiar(Pila<T> pila) {
+    public static <T> Pila<T> copiar(Pila<T> pila) {
         Pila<T> aux = new Pila<>();
         Pila<T> aux2 = new Pila<>();
 

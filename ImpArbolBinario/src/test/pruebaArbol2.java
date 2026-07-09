@@ -1,23 +1,23 @@
 package test;
 import tda.ArbolBinario;
-import tda.Nodo;
+import tda.NodoA;
 
 public class pruebaArbol2 {
     public static void main(String[] args) {
         ArbolBinario<Character> ab = new ArbolBinario<>();
-        Nodo<Character> A = ab.creaRaiz('A');
-        Nodo<Character> B = ab.agregarHijoIzq(A, 'B');
+        NodoA<Character> A = ab.creaRaiz('A');
+        NodoA<Character> B = ab.agregarHijoIzq(A, 'B');
         @SuppressWarnings("unused")
-        Nodo<Character> D = ab.agregarHijoIzq(B, 'D');
+        NodoA<Character> D = ab.agregarHijoIzq(B, 'D');
         
-        Nodo<Character> C = ab.agregarHijoDer(A, 'C');
+        NodoA<Character> C = ab.agregarHijoDer(A, 'C');
         @SuppressWarnings("unused")
-        Nodo<Character> F = ab.agregarHijoDer(C, 'F');
-        Nodo<Character> E = ab.agregarHijoIzq(C, 'E');
+        NodoA<Character> F = ab.agregarHijoDer(C, 'F');
+        NodoA<Character> E = ab.agregarHijoIzq(C, 'E');
         @SuppressWarnings("unused")
-        Nodo<Character> G = ab.agregarHijoIzq(E, 'G');
+        NodoA<Character> G = ab.agregarHijoIzq(E, 'G');
         @SuppressWarnings("unused")
-        Nodo<Character> H = ab.agregarHijoDer(E, 'H');
+        NodoA<Character> H = ab.agregarHijoDer(E, 'H');
         
         System.out.println(ab.tamanio()+'\n');
 
@@ -39,7 +39,7 @@ public class pruebaArbol2 {
         System.out.println("AMBOS HIJOS");
         System.out.println(ab.ambosHijos());
 
-        System.out.println("Cantidad de nodos: " + ab.contarNodosArbol());
+        System.out.println("Cantidad de nodos: " + ab.contarNodoAsArbol());
 
         System.out.println(ab.buscar('z'));
     }

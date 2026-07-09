@@ -1,7 +1,7 @@
 package tda;
 
 public class ArbolBinario<T extends Comparable<?>> {
-    private Nodo<T> raiz;
+    private NodoA<T> raiz;
     private int t; // tamaño
 
     public ArbolBinario() {
@@ -13,56 +13,56 @@ public class ArbolBinario<T extends Comparable<?>> {
     }
 
     // obtener raiz del arbol
-    public Nodo<T> obtRaiz() {
+    public NodoA<T> obtRaiz() {
         return raiz;
     }
 
-    // obtener el hijo izquierdo de un determinado nodo
-    public Nodo<T> obtHijoIzq(Nodo<T> nodo) {
-        if (nodo == null || estaVacio())
-            throw new RuntimeException("No existe el nodo o el arbol!");
-        return nodo.getHijoIzq();
+    // obtener el hijo izquierdo de un determinado NodoA
+    public NodoA<T> obtHijoIzq(NodoA<T> NodoA) {
+        if (NodoA == null || estaVacio())
+            throw new RuntimeException("No existe el NodoA o el arbol!");
+        return NodoA.getHijoIzq();
     }
 
-    // obtener el hijo derecho de un determinado nodo
-    public Nodo<T> obtHijoDer(Nodo<T> nodo) {
-        if (nodo == null || estaVacio())
-            throw new RuntimeException("No existe el nodo o el arbol!");
-        return nodo.getHijoDer();
+    // obtener el hijo derecho de un determinado NodoA
+    public NodoA<T> obtHijoDer(NodoA<T> NodoA) {
+        if (NodoA == null || estaVacio())
+            throw new RuntimeException("No existe el NodoA o el arbol!");
+        return NodoA.getHijoDer();
     }
 
     // Crear la Raiz del arbol binario
-    public Nodo<T> creaRaiz(T item) {
+    public NodoA<T> creaRaiz(T item) {
         if (!estaVacio())
             throw new RuntimeException("Error, el arbol tiene una raiz");
-        Nodo<T> nuevoNodo = new Nodo<>(item, null, null, null);
-        raiz = nuevoNodo;
+        NodoA<T> nuevoNodoA = new NodoA<>(item, null, null, null);
+        raiz = nuevoNodoA;
         t++;
         return raiz;
     }
 
-    // agregar un hijo izq a un nodo especifico
-    public Nodo<T> agregarHijoIzq(Nodo<T> padre, T item) {
+    // agregar un hijo izq a un NodoA especifico
+    public NodoA<T> agregarHijoIzq(NodoA<T> padre, T item) {
         if (padre == null)
-            throw new RuntimeException("Nodo nulo");
+            throw new RuntimeException("NodoA nulo");
         if (padre.getHijoIzq() != null)
-            throw new RuntimeException("Nodo con hijo");
+            throw new RuntimeException("NodoA con hijo");
 
-        Nodo<T> nuevoNodo = new Nodo<>(item, padre, null, null);
-        padre.setHijoIzq(nuevoNodo);
+        NodoA<T> nuevoNodoA = new NodoA<>(item, padre, null, null);
+        padre.setHijoIzq(nuevoNodoA);
         t++;
         return padre.getHijoIzq();
     }
 
-    // agregar un hijo der a un nodo especifico
-    public Nodo<T> agregarHijoDer(Nodo<T> padre, T item) {
+    // agregar un hijo der a un NodoA especifico
+    public NodoA<T> agregarHijoDer(NodoA<T> padre, T item) {
         if (padre == null)
-            throw new RuntimeException("Nodo nulo");
+            throw new RuntimeException("NodoA nulo");
         if (padre.getHijoDer() != null)
-            throw new RuntimeException("Nodo con hijo");
+            throw new RuntimeException("NodoA con hijo");
 
-        Nodo<T> nuevoNodo = new Nodo<>(item, padre, null, null);
-        padre.setHijoDer(nuevoNodo);
+        NodoA<T> nuevoNodoA = new NodoA<>(item, padre, null, null);
+        padre.setHijoDer(nuevoNodoA);
         t++;
         return padre.getHijoDer();
     }
@@ -73,104 +73,104 @@ public class ArbolBinario<T extends Comparable<?>> {
     }
 
     // recorrido en pre-orden de raiz luego a izquierda luego derecha
-    public void preOrden(Nodo<T> nodoRaiz) {
-        if (nodoRaiz != null) {
-            System.out.print(nodoRaiz.getItem() + "    ");
+    public void preOrden(NodoA<T> NodoARaiz) {
+        if (NodoARaiz != null) {
+            System.out.print(NodoARaiz.getItem() + "    ");
             // Recorrido en preorden del sub arbol izquierdo
-            preOrden(nodoRaiz.getHijoIzq());
+            preOrden(NodoARaiz.getHijoIzq());
             // Recorrido en preorden del sub arbol derecho
-            preOrden(nodoRaiz.getHijoDer());
+            preOrden(NodoARaiz.getHijoDer());
         }
     }
 
     // in-orden va de izquierda a raiz luego derecha
-    public void inOrden(Nodo<T> nodo) {
-        if (nodo != null) {
-            inOrden(nodo.getHijoIzq());
-            System.out.print(nodo.getItem() + "    ");
-            inOrden(nodo.getHijoDer());
+    public void inOrden(NodoA<T> NodoA) {
+        if (NodoA != null) {
+            inOrden(NodoA.getHijoIzq());
+            System.out.print(NodoA.getItem() + "    ");
+            inOrden(NodoA.getHijoDer());
         }
     }
 
     // pos-orden va de izquierda a derecha finalmente la raiz
-    public void posOrden(Nodo<T> nodo) {
-        if (nodo != null) {
-            posOrden(nodo.getHijoIzq());
-            posOrden(nodo.getHijoDer());
-            System.out.print(nodo.getItem() + "    ");
+    public void posOrden(NodoA<T> NodoA) {
+        if (NodoA != null) {
+            posOrden(NodoA.getHijoIzq());
+            posOrden(NodoA.getHijoDer());
+            System.out.print(NodoA.getItem() + "    ");
         }
     }
 
-    // 2) Contar nodos del arbol
-    public int contarNodosArbol() {
-        return contarNodosArbol(this.raiz);
+    // 2) Contar NodoAs del arbol
+    public int contarNodoAsArbol() {
+        return contarNodoAsArbol(this.raiz);
     }
 
-    private int contarNodosArbol(Nodo<T> nodo) {
-        if (nodo == null)
+    private int contarNodoAsArbol(NodoA<T> NodoA) {
+        if (NodoA == null)
             return 0;
         else {
-            return 1 + contarNodosArbol(nodo.getHijoIzq()) +
-                    contarNodosArbol(nodo.getHijoDer());
+            return 1 + contarNodoAsArbol(NodoA.getHijoIzq()) +
+                    contarNodoAsArbol(NodoA.getHijoDer());
         }
     }
 
-    // 3) Imprime todos los nodos derechos
+    // 3) Imprime todos los NodoAs derechos
     public void listarHijosDerecha() {
         if (estaVacio())
             throw new RuntimeException("El arbol esta vacio!");
         imprimeDerechaRecursivo(this.raiz);
     }
 
-    private void imprimeDerechaRecursivo(Nodo<T> nodo) {
-        if (nodo != null) {
-            if (nodo.getHijoDer() != null) {
-                System.out.print(nodo.getHijoDer().getItem() + "    ");
+    private void imprimeDerechaRecursivo(NodoA<T> NodoA) {
+        if (NodoA != null) {
+            if (NodoA.getHijoDer() != null) {
+                System.out.print(NodoA.getHijoDer().getItem() + "    ");
             }
-            imprimeDerechaRecursivo(nodo.getHijoDer());
-            imprimeDerechaRecursivo(nodo.getHijoIzq());
+            imprimeDerechaRecursivo(NodoA.getHijoDer());
+            imprimeDerechaRecursivo(NodoA.getHijoIzq());
         }
     }
 
-    // 4) Cantidad de nodos que tienen un solo hijo
+    // 4) Cantidad de NodoAs que tienen un solo hijo
     public int unSoloHijo() {
         if (estaVacio())
             throw new RuntimeException("El arbol esta vacio!");
         return unSoloHijoRecursivo(this.raiz);
     }
 
-    private int unSoloHijoRecursivo(Nodo<T> nodo) {
-        if (nodo == null)
+    private int unSoloHijoRecursivo(NodoA<T> NodoA) {
+        if (NodoA == null)
             return 0;
-        boolean tieneUnHijo = ((nodo.getHijoDer() != null) && (nodo.getHijoIzq() == null)
-                || (nodo.getHijoDer() == null) && (nodo.getHijoIzq() != null));
+        boolean tieneUnHijo = ((NodoA.getHijoDer() != null) && (NodoA.getHijoIzq() == null)
+                || (NodoA.getHijoDer() == null) && (NodoA.getHijoIzq() != null));
 
-        int contaNodo = tieneUnHijo ? 1 : 0;
-        return contaNodo +
-                unSoloHijoRecursivo(nodo.getHijoDer()) +
-                unSoloHijoRecursivo(nodo.getHijoIzq());
+        int contaNodoA = tieneUnHijo ? 1 : 0;
+        return contaNodoA +
+                unSoloHijoRecursivo(NodoA.getHijoDer()) +
+                unSoloHijoRecursivo(NodoA.getHijoIzq());
     }
 
-    // 5) Cantidad de ambos hijos de un nodo
+    // 5) Cantidad de ambos hijos de un NodoA
     public int ambosHijos() {
         if (estaVacio())
             throw new RuntimeException("El arbol esta vacio!");
         return contarAmbosHijosRecursivo(this.raiz);
     }
 
-    private int contarAmbosHijosRecursivo(Nodo<T> nodo) {
-        if (nodo == null)
+    private int contarAmbosHijosRecursivo(NodoA<T> NodoA) {
+        if (NodoA == null)
             return 0;
 
         int contaActual;
-        if (nodo.getHijoDer() != null && nodo.getHijoIzq() != null)
+        if (NodoA.getHijoDer() != null && NodoA.getHijoIzq() != null)
             contaActual = 1;
         else
             contaActual = 0;
 
         return contaActual +
-                contarAmbosHijosRecursivo(nodo.getHijoDer()) +
-                contarAmbosHijosRecursivo(nodo.getHijoIzq());
+                contarAmbosHijosRecursivo(NodoA.getHijoDer()) +
+                contarAmbosHijosRecursivo(NodoA.getHijoIzq());
     }
 
     // 6) Busqueda de elemento X
@@ -178,13 +178,13 @@ public class ArbolBinario<T extends Comparable<?>> {
         return buscar(raiz, item);
     }
 
-    public boolean buscar(Nodo<T> nodo, T item) {
-        if (nodo != null) {
-            if (nodo.getItem().equals(item))
+    public boolean buscar(NodoA<T> NodoA, T item) {
+        if (NodoA != null) {
+            if (NodoA.getItem().equals(item))
                 return true;
             else
-                return buscar(nodo.getHijoIzq(), item) ||
-                       buscar(nodo.getHijoDer(), item);
+                return buscar(NodoA.getHijoIzq(), item) ||
+                       buscar(NodoA.getHijoDer(), item);
         } else
             return false;
     }
