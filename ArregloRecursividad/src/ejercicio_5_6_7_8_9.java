@@ -1,11 +1,12 @@
 public class ejercicio_5_6_7_8_9 {
     public static void main(String[] args) {
-        int[] array = {20,1,11,2,3,4,5};
+        int[] array = {1,5,11,13,15,19,41,53};
         System.out.println("Array:" + eje5_recursiva(array, array.length));
         System.out.println("Menores que X: " + eje6_recursiva(array, array.length, 3));
         System.out.println("Buscar: " + eje7_recursiva(array, array.length, 1));
         System.out.println("Mayor: " + eje8_recursiva(array, array.length, 0));
         System.out.println("Negativos: " + eje9_recursiva(array, array.length));
+        System.out.println("Busqueda: " + busquedaBinaria(array, 0, array.length - 1, 11));
     }
 
     public static int eje5_recursiva(int[] array, int pos) {
@@ -42,6 +43,16 @@ public class ejercicio_5_6_7_8_9 {
         else {
             if (array[pos - 1] < 0) return true;
             else return eje9_recursiva(array, pos - 1);
+        }
+    }
+
+    public static int busquedaBinaria(int[] array, int ini, int fin, int x) {
+        if (ini > fin) return -1;
+        else {
+            int medio = (ini + fin) / 2;
+            if (array[medio] == x) return medio;
+            else if (array[medio] > x) return busquedaBinaria(array, ini, medio - 1, x);
+            else return busquedaBinaria(array, medio + 1, fin, x);
         }
     }
 }
