@@ -183,7 +183,7 @@ public class ListaSimpleEnlazada2<T> {
         nNodo.setSgteNodo(aux2);
     }
     //sonIguales: verifica que 2 listas sean iguales en tamaño y elementos
-    public boolean sonIguales(ListaSimpleEnlazada2 l1) {
+    public boolean sonIguales(ListaSimpleEnlazada2<T> l1) {
         if (this.longitud() != l1.longitud()) return false;
         
         else {
@@ -200,7 +200,7 @@ public class ListaSimpleEnlazada2<T> {
             return true;
         }
     }
-    public boolean sonIguales(ListaSimpleEnlazada2 l1, ListaSimpleEnlazada2 l2) {
+    public boolean sonIguales(ListaSimpleEnlazada2<T> l1, ListaSimpleEnlazada2<T> l2) {
         return l1.sonIguales(l2);
     }
     

@@ -6,7 +6,7 @@ public class Ejercicio2 {
 *2. Considere la operación sonIguales (L1, L2) que determina si dos listas 
 *   enlazadas simples son iguales (en tamaño y contenido).    
 **/
-    public static boolean sonIguales(ListaSimpleEnlazada l1, ListaSimpleEnlazada l2) {
+    public static boolean sonIguales(ListaSimpleEnlazada<Integer> l1, ListaSimpleEnlazada<Integer> l2) {
         if (l1.longitud() != l2.longitud()) return false;
         
         else {
@@ -39,6 +39,6 @@ public class Ejercicio2 {
         System.out.println(sonIguales(l1,l2));
         System.out.println(l1.sonIguales(l2));
         System.out.println(l1.sonIguales(l2,l3));
-        
+   
     }
 }

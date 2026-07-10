@@ -195,7 +195,7 @@ public class ListaSimpleEnlazada<T> {
         nNodo.setSgteNodo(aux2);
     }
     //sonIguales: verifica que 2 listas sean iguales en tamaño y elementos
-    public boolean sonIguales(ListaSimpleEnlazada l1) {
+    public boolean sonIguales(ListaSimpleEnlazada<T> l1) {
         if (this.longitud() != l1.longitud()) return false;
         
         else {
@@ -212,7 +212,7 @@ public class ListaSimpleEnlazada<T> {
             return true;
         }
     }
-    public boolean sonIguales(ListaSimpleEnlazada l1, ListaSimpleEnlazada l2) {
+    public boolean sonIguales(ListaSimpleEnlazada<T> l1, ListaSimpleEnlazada<T> l2) {
         return l1.sonIguales(l2);
     }
     //eliminarRepetidos: elimina items repetidos
@@ -236,7 +236,7 @@ public class ListaSimpleEnlazada<T> {
         }
     }
     //concatena<rLista: une dos listas brindadas
-    public void concatenarLista(ListaSimpleEnlazada lista) {
+    public void concatenarLista(ListaSimpleEnlazada<T> lista) {
         // 1, 2, 3     4, 5, 6
         Nodo<T> aux = cabeza;
         while (aux.getSgteNodo()!=null) aux = aux.getSgteNodo();
@@ -395,6 +395,24 @@ public class ListaSimpleEnlazada<T> {
             }
         }
     }
+    public int contarNodos(ListaSimpleEnlazada<T> l1) {
+        return recuElemContar(cabeza);
+    }
+    private int recuElemContar(Nodo<T> aux) {
+        if (aux == null) return 0;
+        else return 1+ recuElemContar(aux.getSgteNodo());
+    }
 
+    public void inversoImprimir(ListaSimpleEnlazada<T> l1) {
+        cabeza = inversoLista(cabeza, null, null);
+    }
+    private Nodo<T> inversoLista(Nodo<T> act, Nodo<T> ant, Nodo<T> sgt) {
+        if (act == null) return ant;
+        else {
+            sgt = act.getSgteNodo();
+            act.setSgteNodo(ant);
+            return inversoLista(sgt, act, sgt);
+        }
+    }
 
 } 
