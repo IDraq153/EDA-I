@@ -3,7 +3,7 @@ package tda;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class ArbolBinario<T extends Comparable<?>> {
+public class ArbolBinario<T extends Comparable<T>> {
     private NodoA<T> raiz;
     private int t; // tamaño
 
@@ -255,5 +255,37 @@ public class ArbolBinario<T extends Comparable<?>> {
         mayorA = promAltoRecu(nodoA.getHijoDer(), mayorA);
 
         return mayorA;
+    }
+
+    public boolean ABM() {
+        if (estaVacio()) return false;
+        return AMBrecu(raiz, null, null);
+    }
+    private boolean AMBrecu(NodoA<T> nodo, T min, T max) {
+        if (nodo == null) return true;
+        T dato = nodo.getItem();
+
+        if (min != null && dato.compareTo(min) <= 0) return false;
+        if (max != null && dato.compareTo(max) >= 0) return false;
+
+        return AMBrecu(nodo.getHijoIzq(), min, dato) &&
+               AMBrecu(nodo.getHijoDer(), dato, max);
+    }
+
+    public boolean sonIguales(ArbolBinario<T> ab1, ArbolBinario<T> ab2) {
+        if (ab1.estaVacio() || ab2.estaVacio()) throw new RuntimeException("Arbol(es) vacios!");    
+        return sonIgualesR(ab1.obtRaiz(), ab2.obtRaiz());
+    }
+    private boolean sonIgualesR(NodoA<T> nodoA, NodoA<T> nodoB) {
+        if (nodoA == null && nodoB != null) return false;
+        else if (nodoA != null && nodoB == null) return false;
+        else if (nodoA == null && nodoB == null) return true;
+
+        if (nodoA.getItem().compareTo(nodoB.getItem()) != 0) {
+            return false;
+        } else {
+            return sonIgualesR(nodoA.getHijoIzq(), nodoB.getHijoIzq()) &&
+                   sonIgualesR(nodoA.getHijoDer(), nodoB.getHijoDer());
+        }
     }
 }
