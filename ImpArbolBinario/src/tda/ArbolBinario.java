@@ -1,5 +1,8 @@
 package tda;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ArbolBinario<T extends Comparable<?>> {
     private NodoA<T> raiz;
     private int t; // tamaño
@@ -105,7 +108,6 @@ public class ArbolBinario<T extends Comparable<?>> {
     public int contarNodoAsArbol() {
         return contarNodoAsArbol(this.raiz);
     }
-
     private int contarNodoAsArbol(NodoA<T> NodoA) {
         if (NodoA == null)
             return 0;
@@ -121,7 +123,6 @@ public class ArbolBinario<T extends Comparable<?>> {
             throw new RuntimeException("El arbol esta vacio!");
         imprimeDerechaRecursivo(this.raiz);
     }
-
     private void imprimeDerechaRecursivo(NodoA<T> NodoA) {
         if (NodoA != null) {
             if (NodoA.getHijoDer() != null) {
@@ -138,14 +139,13 @@ public class ArbolBinario<T extends Comparable<?>> {
             throw new RuntimeException("El arbol esta vacio!");
         return unSoloHijoRecursivo(this.raiz);
     }
-
     private int unSoloHijoRecursivo(NodoA<T> NodoA) {
         if (NodoA == null)
             return 0;
         boolean tieneUnHijo = ((NodoA.getHijoDer() != null) && (NodoA.getHijoIzq() == null)
                 || (NodoA.getHijoDer() == null) && (NodoA.getHijoIzq() != null));
-
         int contaNodoA = tieneUnHijo ? 1 : 0;
+        
         return contaNodoA +
                 unSoloHijoRecursivo(NodoA.getHijoDer()) +
                 unSoloHijoRecursivo(NodoA.getHijoIzq());
@@ -157,16 +157,11 @@ public class ArbolBinario<T extends Comparable<?>> {
             throw new RuntimeException("El arbol esta vacio!");
         return contarAmbosHijosRecursivo(this.raiz);
     }
-
     private int contarAmbosHijosRecursivo(NodoA<T> NodoA) {
-        if (NodoA == null)
-            return 0;
-
-        int contaActual;
-        if (NodoA.getHijoDer() != null && NodoA.getHijoIzq() != null)
-            contaActual = 1;
-        else
-            contaActual = 0;
+        if (NodoA == null) return 0;
+        
+        boolean tieneAmbosHijos = ((NodoA.getHijoDer() != null && NodoA.getHijoIzq() != null));
+        int contaActual = tieneAmbosHijos ? 1 : 0;
 
         return contaActual +
                 contarAmbosHijosRecursivo(NodoA.getHijoDer()) +
@@ -177,7 +172,6 @@ public class ArbolBinario<T extends Comparable<?>> {
     public boolean buscar(T item) {
         return buscar(raiz, item);
     }
-
     public boolean buscar(NodoA<T> NodoA, T item) {
         if (NodoA != null) {
             if (NodoA.getItem().equals(item))
@@ -187,5 +181,79 @@ public class ArbolBinario<T extends Comparable<?>> {
                        buscar(NodoA.getHijoDer(), item);
         } else
             return false;
+    }
+
+    public int nodosSinHijosRecursivo() {
+        if (estaVacio()) throw new RuntimeException("Arbol vacio!");
+        return SinHijosRecursivo(raiz);
+    }
+    private int SinHijosRecursivo(NodoA<T> nodo) {
+        if (nodo.getHijoIzq() != null && nodo.getHijoDer() != null) {
+            return SinHijosRecursivo(nodo.getHijoIzq()) +
+                   SinHijosRecursivo(nodo.getHijoDer());
+        } else if (nodo.getHijoIzq() != null && nodo.getHijoDer() == null) {
+            return SinHijosRecursivo(nodo.getHijoIzq());
+        } else if (nodo.getHijoIzq() == null && nodo.getHijoDer() != null) {
+            return SinHijosRecursivo(nodo.getHijoDer());
+        } else {
+            return 1;
+        }
+    }
+
+    public void recoPrimeroAncho() {
+        if (estaVacio()) throw new RuntimeException("Arbol vacio!");
+        Queue<NodoA<T>> cola = new LinkedList<>();
+        cola.offer(raiz);
+        recorridoAnchoRecursivo(cola);
+    }
+    private void recorridoAnchoRecursivo(Queue<NodoA<T>> cola) {
+        if (cola.isEmpty()) return;
+
+        NodoA<T> actual = cola.poll();
+        System.out.print(actual.getItem() + "    ");
+
+        if (actual.getHijoIzq() != null) 
+            cola.offer(actual.getHijoIzq());
+        if (actual.getHijoDer() != null) 
+            cola.offer(actual.getHijoDer());   
+
+        recorridoAnchoRecursivo(cola);
+    }
+
+    public void remplazoProm(String NN, float promedio) {
+        if (estaVacio()) throw new RuntimeException("El arbol esta vacio");
+        if (remplazoPromRecu(NN, promedio, (NodoA<Alumno>) raiz)) {
+            System.out.println("Promedio Actualizado!");
+        } 
+    }
+    private boolean remplazoPromRecu(String NN, float prom, NodoA<Alumno> nodoAlumno) {
+        if (nodoAlumno == null) return false;
+        
+        Alumno alumnoA = nodoAlumno.getItem();
+        if (alumnoA.getNom().equals(NN)) {
+            alumnoA.setPromedio(prom);
+            return true;
+        } else {
+            return remplazoPromRecu(NN, prom, nodoAlumno.getHijoIzq()) ||
+                   remplazoPromRecu(NN, prom, nodoAlumno.getHijoDer());
+        }
+    }
+
+    public Alumno promMasAlto() {
+        if (estaVacio()) throw new RuntimeException("El arbol esta vacio!");
+        Alumno mayorProm = new Alumno();
+        return promAltoRecu((NodoA<Alumno>) raiz, mayorProm);
+    }
+    private Alumno promAltoRecu(NodoA<Alumno> nodoA, Alumno mayorA) {
+        if (nodoA == null) return mayorA;
+        
+        Alumno actual = nodoA.getItem();
+        if (actual.getPromedio() > mayorA.getPromedio()) {
+            mayorA = actual;
+        } 
+        mayorA = promAltoRecu(nodoA.getHijoIzq(), mayorA);
+        mayorA = promAltoRecu(nodoA.getHijoDer(), mayorA);
+
+        return mayorA;
     }
 }

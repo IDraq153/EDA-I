@@ -13,7 +13,16 @@ public class pruebaArbol {
         NodoA<Integer> f = ab.agregarHijoDer(e, 8);
         System.out.println(ab.tamanio());
 
+        System.out.println("------------");
+        System.out.println(ab.contarNodoAsArbol());
         System.out.println("\nRecorrido pre orden");
         ab.preOrden(r);
+        System.out.println("\nRecorrido in orden");
+        ab.inOrden(r);
+        System.out.println("\nRecorrido pos orden");
+        ab.posOrden(r);
+     
+        System.out.println("\nBusqueda en capas");
+        ab.recoPrimeroAncho();
     }
 }
