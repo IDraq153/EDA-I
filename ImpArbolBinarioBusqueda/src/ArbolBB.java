@@ -110,14 +110,12 @@ public class ArbolBB<T extends Comparable> {
 
     public void mostrarAntecesores(T item){
         if(!estaVacio()){
-            int comparacion =raiz.compareTo(item);
-            //Si el resultado de comparacion es positivo la raiz es mayor que el item
-            if(comparacion>0){
-                
+            int comparacion = item.compareTo(raiz);
+
+            if(comparacion<0){  
                 System.out.println(raiz+"");
                 if(subArbolIzq!=null) subArbolIzq.mostrarAntecesores(item);
-            //Si es negativo la raiz es menor
-            } else if(comparacion<0) {
+            } else if(comparacion>0) {
                 System.out.println(raiz+"");
                 if(subArbolDer!=null) subArbolDer.mostrarAntecesores(item);
             }   
@@ -125,19 +123,13 @@ public class ArbolBB<T extends Comparable> {
     }
 
     public boolean buscar(T item) {
-        boolean encontrado = false; 
         if (item.compareTo(raiz) == 0) {
-            encontrado = true;
+            return true;
         } else if (item.compareTo(raiz) < 0) {
-            if (subArbolIzq != null) {
-                encontrado = subArbolIzq.buscar(item);
-            }
-        } else if (item.compareTo(raiz) > 0) {
-            if (subArbolDer != null) {
-                encontrado = subArbolDer.buscar(item);
-            }
+            return subArbolIzq != null && subArbolIzq.buscar(item);
+        } else {
+            return subArbolDer != null && subArbolDer.buscar(item);
         }
-        return encontrado;
     }
 
     public void eliminar(T item) {
@@ -169,5 +161,9 @@ public class ArbolBB<T extends Comparable> {
                 subArbolDer.eliminar(item);
             }
         } 
+    }
+
+    public void registrarNota(T item) {
+        if (estaVacio()) raiz = item;
     }
 }

@@ -43,8 +43,8 @@ public class ejercicio9 {
     }
 
     public static void main(String[] args) {
-        Cola cola1 = new Cola<>();
-        Cola cola2 = new Cola<>();
+        Cola<Integer> cola1 = new Cola<>();
+        Cola<Integer> cola2 = new Cola<>();
 
         cola1.encolar(1);
         cola1.encolar(1);
