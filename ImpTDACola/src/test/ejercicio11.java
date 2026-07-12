@@ -4,7 +4,7 @@ import tda.Cola;
 
 public class ejercicio11 {
 
-    public static Cola copiar(Cola<Integer> cola) {
+    public static Cola<Integer> copiar(Cola<Integer> cola) {
         Cola<Integer> colaCopia = new Cola<>();
         Cola<Integer> aux = new Cola<>();
 
@@ -35,7 +35,7 @@ public class ejercicio11 {
         return flag;
     }
 
-    public static Cola interseccion(Cola<Integer> cola1, Cola<Integer> cola2) {
+    public static Cola<Integer> interseccion(Cola<Integer> cola1, Cola<Integer> cola2) {
         Cola<Integer> cola3 = new Cola<>();
         Cola<Integer> colaA1 = copiar(cola1);
 
