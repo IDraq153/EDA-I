@@ -58,7 +58,7 @@ public class ArbolBB<T extends Comparable> {
             System.out.print("Error el item ya existe!");
         }
     }
-
+    
     public void inorden() {
         if (estaVacio())  throw new RuntimeException("Arbol vacio!");    
         if (subArbolIzq!=null) subArbolIzq.inorden();
@@ -87,7 +87,7 @@ public class ArbolBB<T extends Comparable> {
             else return subArbolIzq.min();
         }
     }
-
+    
     public T max() {
         if(estaVacio()) throw new RuntimeException("Error arbol vacio");
         else{   
@@ -107,11 +107,11 @@ public class ArbolBB<T extends Comparable> {
         if(raiz.compareTo(x)>0) pila.apilar(raiz);
         if(subArbolDer!=null) subArbolDer.obtenerMayoresque(x, pila);   
     }
-
+    
     public void mostrarAntecesores(T item){
         if(!estaVacio()){
             int comparacion = item.compareTo(raiz);
-
+            
             if(comparacion<0){  
                 System.out.println(raiz+"");
                 if(subArbolIzq!=null) subArbolIzq.mostrarAntecesores(item);
@@ -131,7 +131,7 @@ public class ArbolBB<T extends Comparable> {
             return subArbolDer != null && subArbolDer.buscar(item);
         }
     }
-
+    
     public void eliminar(T item) {
         if (estaVacio()) throw new RuntimeException("Error arbol vacio");
         
@@ -165,5 +165,12 @@ public class ArbolBB<T extends Comparable> {
 
     public void registrarNota(T item) {
         if (estaVacio()) raiz = item;
+        else if (subArbolIzq != null) {
+            
+        } else if (subArbolDer != null) {
+            
+        } else {
+            
+        }
     }
 }
