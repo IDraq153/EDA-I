@@ -60,11 +60,24 @@ public class ArbolBB<T extends Comparable> {
     }
 
     public void inorden() {
-        if (!estaVacio()) {
-            if (subArbolIzq!=null) subArbolIzq.inorden();
-        }
+        if (estaVacio())  throw new RuntimeException("Arbol vacio!");    
+        if (subArbolIzq!=null) subArbolIzq.inorden();
         System.out.print(raiz + "\t");
         if (subArbolDer!=null) subArbolDer.inorden();        
+    }
+    
+    public void preorden() {
+        if (estaVacio())  throw new RuntimeException("Arbol vacio!");    
+        System.out.print(raiz + "\t");
+        if (subArbolIzq!=null) subArbolIzq.preorden();
+        if (subArbolDer!=null) subArbolDer.preorden();            
+    }
+    
+    public void posorden() {
+        if (estaVacio())  throw new RuntimeException("Arbol vacio!");    
+        if (subArbolIzq!=null) subArbolIzq.posorden();
+        if (subArbolDer!=null) subArbolDer.posorden();
+        System.out.print(raiz + "\t");
     }
 
     public T min() {
