@@ -162,15 +162,4 @@ public class ArbolBB<T extends Comparable> {
             }
         } 
     }
-
-    public void registrarNota(T item) {
-        if (estaVacio()) raiz = item;
-        else if (subArbolIzq != null) {
-            
-        } else if (subArbolDer != null) {
-            
-        } else {
-            
-        }
-    }
 }
