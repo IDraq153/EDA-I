@@ -1,7 +1,8 @@
 public class ejercicio_5_6_7_8_9 {
     public static void main(String[] args) {
-        int[] array = {1,5,11,13,15,19,41,53};
+        int[] array = {1,5,3};
         System.out.println("Array:" + eje5_recursiva(array, array.length));
+        System.out.println("Array:" + eje5_recursivo(array, 0));
         System.out.println("Menores que X: " + eje6_recursiva(array, array.length, 3));
         System.out.println("Buscar: " + eje7_recursiva(array, array.length, 1));
         System.out.println("Mayor: " + eje8_recursiva(array, array.length, 0));
@@ -13,11 +14,15 @@ public class ejercicio_5_6_7_8_9 {
         if (pos == 0) return 0;
         else return array[pos - 1] + eje5_recursiva(array, pos - 1);
     }
- 
+    public static int eje5_recursivo(int[] array, int pos) {
+        if (pos == array.length - 1) return array[pos];
+        else return array[pos] + eje5_recursivo(array, pos + 1);
+    } 
+
     public static int eje6_recursiva(int[] array, int pos, int x) {
         if (pos == 0) return 0;
         else {
-            if (array[pos - 1] <= x) return 1 + eje6_recursiva(array, pos - 1, x);
+            if (array[pos - 1] < x) return 1 + eje6_recursiva(array, pos - 1, x);
             else return eje6_recursiva(array, pos - 1, x);
         }
     }
