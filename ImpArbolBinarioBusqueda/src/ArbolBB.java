@@ -1,6 +1,5 @@
 
-@SuppressWarnings("rawtypes")
-public class ArbolBB<T extends Comparable> {
+public class ArbolBB<T extends Comparable<T>> {
     // elementos
     private T raiz;
     private ArbolBB<T> subArbolIzq;
@@ -39,7 +38,6 @@ public class ArbolBB<T extends Comparable> {
     si es mayor a 0 item es mayor, si es igual es
     igual a raiz, si es menor es menor a raiz compareTo
     */ 
-    @SuppressWarnings("unchecked")
     public void agregar(T item) {
         if (estaVacio()) raiz = item;
         else if (item.compareTo(raiz) < 0) {
@@ -102,10 +100,14 @@ public class ArbolBB<T extends Comparable> {
         return pila;    
     }
     private void obtenerMayoresque(T x, Pila<T> pila){
-        if(estaVacio()) return;       
-        if(subArbolIzq!=null) subArbolIzq.obtenerMayoresque(x, pila);
-        if(raiz.compareTo(x)>0) pila.apilar(raiz);
-        if(subArbolDer!=null) subArbolDer.obtenerMayoresque(x, pila);   
+        if(estaVacio()) return;      
+        if (x.compareTo(raiz) < 0) {
+            if(subArbolIzq!=null) subArbolIzq.obtenerMayoresque(x, pila);
+            pila.apilar(raiz);
+            if(subArbolDer!=null) subArbolDer.obtenerMayoresque(x, pila);   
+        } else {
+            if (subArbolDer != null) subArbolDer.obtenerMayoresque(x, pila);
+        }
     }
     
     public void mostrarAntecesores(T item){
